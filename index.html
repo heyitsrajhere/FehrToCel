@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		Temrature convertor
+	</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+			box-sizing: border-box;
+		}			
+		body{
+			height: 100vh;
+			width: 100vw;
+			background-color: #f8e7af;
+			display: grid;
+			place-items: center;
+		}
+		form{
+			background-color: #fab1a0;
+			padding: 80px;
+			width: 50%;
+			margin: 100px auto;
+			text-align: center;
+			-webkit-box-shadow: 0 10px 6px -6px #777;
+			-moz-box-shadow: 0 10px 6px -6px #777;
+			box-shadow: 0 10px 6px -6px #777;
+		}
+		#tempcalc label{
+			font-size: 26px;
+		}
+		#temp{
+			border: none;
+			padding: 10px;
+			height: 40px;
+			width: 100px;
+			font-size: 20px;
+			margin-top: 20px;
+		}
+		#temp_diff{
+			height: 40px;
+			border: none;
+			margin-top: 20px;
+			font-size: 15px;
+			vertical-align: top;
+		}
+		[type="submit"]
+		{
+			height: 35px;
+			margin: 20px;
+			width: 100px;
+			font-size: 15px;
+			border: none;
+			background-color: black;
+			color: white;
+		}
+		#resultContainer{
+			font-size: 35px;
+		}
+	</style>
+</head>
+<body>
+
+	<form id="tempcalc" onsubmit="calculateTemp(); return false">
+		
+		<label for="temp" >Please enter the temprature you'd like to convert</label>
+		<input type="number" name="temp" id="temp">
+		<select name="temp_diff" id="temp_diff">
+			<option value="cel"> °celsius</option>
+			<option value="fah"> °Fahrenheit</option>
+		</select> <br  />
+		<input type="submit"name="temp" value="submit"> <br  />
+		<span id="resultContainer">
+			
+		</span>
+	</form>
+
+	<script>
+		const calculateTemp = () =>{
+			const numberTemp = document.getElementById('temp').value;
+			
+			const tempSelected =document.getElementById('temp_diff')
+
+			const valueTemp = temp_diff.options[tempSelected.selectedIndex].value;
+
+			const celTofah =(cel)=>{
+				let  fahrenheit = Math.round((cel * 9/5) + 32);
+				return fahrenheit;
+			}
+
+			const fahtocel =(fehr)=>{
+				let  celsius = Math.round((fehr-32) *5/9);
+				return celsius;
+			}
+			let result;
+
+			if(valueTemp == 'cel')
+			{
+				result = celTofah(numberTemp);
+				document.getElementById('resultContainer').innerHTML = `= ${result}°Fahrenheit`;
+			}
+			else
+			{
+				result = fehTocel(numberTemp);
+				document.getElementById('resultContainer').innerHTML = `= ${result}°celsius`;
+			}
+		}
+	</script>
+</body>
+</html>
